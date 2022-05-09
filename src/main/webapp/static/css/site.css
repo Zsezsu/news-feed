@@ -1,0 +1,12 @@
+.visit {
+    color: blue;
+    font-weight: bolder;
+}
+
+.folder {
+    color: darkblue;
+    background-color: antiquewhite;
+    font-style: italic;
+    border: 1px solid darkred;
+    padding: 3px;
+}
