@@ -23,7 +23,7 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
                         "<head>" +
                         "  <title>" + title + "</title>" +
                         "  <link rel=\"stylesheet\" type=\"text/css\" href='/static/css/site.css' />" +
-                        "    <script src='/static/js/main.js'></script>" +
+                        "    <script src='/static/js/main.js' defer></script>" +
                         "</head>\n" +
                         "<body>\n" +
                         "<h1 align = \"center\">" + title + "</h1>\n" +
