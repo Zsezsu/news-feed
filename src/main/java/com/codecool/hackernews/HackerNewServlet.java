@@ -31,6 +31,14 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
                         "<li><b>First Name</b>: " + request.getParameter("first_name") + "\n" +
                         "<li><b>Last Name</b>: " + request.getParameter("last_name") + "\n" +
                         "</ul>\n" +
+                        "<div>Menu:" +
+                        "<ul>\n" +
+                        "   <li><a href=\"/\">Hackson news</a>: " +
+                        "   <li><button id=\"top-news\">Top news</button> " +
+                        "   <li><button id=\"newest\">Newest</button> " +
+                        "   <li><button id=\"jobs\">Jobs</button> " +
+                        "  </ul>\n" +
+                        "</div>" +
                         "<div class='visit'>You can serve any static content from <span class='folder'>webapp/static</span> folder, like a css file.</div>" +
                         "<div>Visit another servlet: <a href=\"/another\">Visit the other servlet</a></div>" +
                         "<div>You can provide a json file as well: <a href=\"/json\">Visit Hacker News json data example</a></div>" +
