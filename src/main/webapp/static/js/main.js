@@ -1,1 +1,1 @@
-alert("I'm from main.js");
+console.log("Hello Zsu!")

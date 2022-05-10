@@ -16,13 +16,14 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String title = "Michael Hackson news";
+        String title = "Hacker news site main page";
 
         out.println(
                 "<html>\n" +
                         "<head>" +
                         "  <title>" + title + "</title>" +
                         "  <link rel=\"stylesheet\" type=\"text/css\" href='/static/css/site.css' />" +
+                        "    <script src='/static/js/main.js'></script>" +
                         "</head>\n" +
                         "<body>\n" +
                         "<h1 align = \"center\">" + title + "</h1>\n" +
