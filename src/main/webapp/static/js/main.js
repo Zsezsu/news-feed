@@ -14,6 +14,8 @@ const eventListeners = {
             this.changeActiveNavBar(e.currentTarget);
             const data = await this.fetchTopNews();
             console.log(data);
+            let container = document.querySelector(".container");
+            container.innerHTML = this.renderCards(data);
         }
     },
 
@@ -40,6 +42,22 @@ const eventListeners = {
     async fetchTopNews(pageNumber=1){
         const response = await fetch(`/api/top?page=${pageNumber}`);
         return await response.json();
+    },
+
+    renderCards(news){
+        let cards = "";
+        for (let element of news){
+            cards += `
+            <div class="card">
+                <h5 class="card-header primary"><a href="${element['url']}">${element['title']}</a></h5>
+                <div class="card-body">
+                    <p class="card-text">${element['user']}</p>
+                    <p class="card-text">${element['time_ago']}</p>
+                </div>
+            </div>
+            `
+        }
+        return cards
     },
 
     changeActiveNavBar(e){
