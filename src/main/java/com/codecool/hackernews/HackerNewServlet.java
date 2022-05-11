@@ -31,12 +31,14 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
                         "<div class=\"shadow p-3 mb-5 bg-body rounded\">" +
                         "<ul class=\"nav nav-tabs\">\n" +
                         "   <li class=\"nav-item\"><a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Hackson news</a> " +
-                        "   <li class=\"nav-item\"><a class=\"nav-link\" id=\"top-news\" href=\"#\">Top news</a> " +
-                        "   <li class=\"nav-item\"><a class=\"nav-link\" id=\"newest\" href=\"#\">Newest</a> " +
-                        "   <li class=\"nav-item\"><a class=\"nav-link\" id=\"jobs\" href=\"#\">Jobs</a> " +
+                        "   <li class=\"nav-item\"><a class=\"nav-link\" id=\"top-news\" href=\"javascript:void(0);\">Top news</a> " +
+                        "   <li class=\"nav-item\"><a class=\"nav-link\" id=\"newest\" href=\"javascript:void(0);\">Newest</a> " +
+                        "   <li class=\"nav-item\"><a class=\"nav-link\" id=\"jobs\">Jobs</a> " +
                         "  </ul>\n" +
                         "</div>" +
-                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container\">" +
+                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container pagination-container\">" +
+                        "</div>" +
+                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container card-container\">" +
                         "</div>" +
                         "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded\">" +
                         "<footer class=\"text-primary w-25 p-6\">" +
