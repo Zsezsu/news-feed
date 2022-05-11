@@ -13,7 +13,6 @@ const eventListeners = {
         async function eventListenerTopNews(e){
             this.changeActiveNavBar(e.currentTarget);
             const data = await this.fetchTopNews();
-            console.log(data);
             let container = document.querySelector(".container");
             container.innerHTML = this.renderCards(data);
         }
@@ -49,7 +48,7 @@ const eventListeners = {
         for (let element of news){
             cards += `
             <div class="card">
-                <h5 class="card-header primary"><a href="${element['url']}">${element['title']}</a></h5>
+                <h6 class="card-header primary"><a href="${element['url']}">${element['title']}</a></h6>
                 <div class="card-body">
                     <p class="card-text">${element['user']}</p>
                     <p class="card-text">${element['time_ago']}</p>
