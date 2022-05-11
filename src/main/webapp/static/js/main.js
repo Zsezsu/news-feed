@@ -30,8 +30,8 @@ const eventListeners = {
         })
     },
 
-    async fetchTopNews(){
-        const response = await fetch("/api/top?page=1");
+    async fetchTopNews(pageNumber=1){
+        const response = await fetch(`/api/top?page=${pageNumber}`);
         return await response.json();
     }
 }
