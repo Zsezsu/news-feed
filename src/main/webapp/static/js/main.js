@@ -31,7 +31,7 @@ const eventListeners = {
     },
 
     async fetchTopNews(){
-        const response = await fetch("https://api.hnpwa.com/v0/news/1.json");
+        const response = await fetch("/api/top?page=1");
         return await response.json();
     }
 }
