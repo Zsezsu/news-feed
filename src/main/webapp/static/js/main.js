@@ -16,7 +16,7 @@ const eventListeners = {
             this.changeActiveNavBar(document.querySelector("#top-news"));
             this.createPagination();
             this.clickOnPaginationButtons();
-            this.loadTopNews(1);
+            this.loadNews("top", 1);
         }
     },
 
@@ -29,7 +29,8 @@ const eventListeners = {
         function eventListenerNewest(){
             this.changeActiveNavBar(document.querySelector("#newest-news"));
             this.createPagination();
-            console.log("newest!");
+            this.clickOnPaginationButtons();
+            this.loadNews("newest", 1);
         }
     },
 
@@ -57,6 +58,7 @@ const eventListeners = {
             let pressedPageButton = e.currentTarget;
             let otherPageButton = (e.currentTarget.getAttribute('id') === 'next') ? document.querySelector("#prev") :
                 document.querySelector("#next");
+            let activeSite = document.querySelector(".active-site").getAttribute("data-name");
 
             if (pageNumber >= 1 && pageNumber <= 10) {
                 let pageDirection = pressedPageButton.getAttribute('id');
@@ -64,15 +66,15 @@ const eventListeners = {
                     case 'prev':
                         if (pageNumber !== 1) {
                             pageNumber--;
-                            changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber)
-                            this.loadTopNews(pageNumber);
+                            changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber);
+                            this.loadNews(activeSite, pageNumber);
                         }
                         break;
                     case 'next':
                         if (pageNumber !== 10) {
                             pageNumber++;
-                            changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber)
-                            this.loadTopNews(pageNumber);
+                            changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber);
+                            this.loadNews(activeSite, pageNumber);
                         }
                         break;
                 }
@@ -85,13 +87,13 @@ const eventListeners = {
         }
     },
 
-    async fetchTopNews(pageNumber= 1){
-        const response = await fetch(`/api/top?page=${pageNumber}`);
+    async fetchNews(site="top", pageNumber= 1){
+        const response = await fetch(`/api/${site}?page=${pageNumber}`);
         return await response.json();
     },
 
-    async loadTopNews(pageNumber){
-        const data = await this.fetchTopNews(pageNumber);
+    async loadNews(site, pageNumber){
+        const data = await this.fetchNews(site, pageNumber);
         let container = document.querySelector(".card-container");
         container.innerHTML = this.renderCards(data);
     },
@@ -123,9 +125,11 @@ const eventListeners = {
     },
 
     changeActiveNavBar(element){
-        let prevActiveButton = document.querySelector(".active")
+        let prevActiveButton = document.querySelector(".active");
         prevActiveButton.classList.remove("active");
+        prevActiveButton.classList.remove("active-site");
         element.classList.add("active");
+        element.classList.add("active-site");
     },
 
     createPagination(){
