@@ -7,11 +7,13 @@ const eventListeners = {
     },
 
     clickOnTopNews(){
-        const topNewsButton = document.querySelector("#top-news");
-        topNewsButton.addEventListener('click', eventListenerTopNews.bind(this));
+        const topNewsButtons = document.querySelectorAll(".top-news");
+        for (let topNewsButton of topNewsButtons) {
+            topNewsButton.addEventListener('click', eventListenerTopNews.bind(this));
+        }
 
-        function eventListenerTopNews(e){
-            this.changeActiveNavBar(e.currentTarget);
+        function eventListenerTopNews(){
+            this.changeActiveNavBar(document.querySelector("#top-news"));
             this.createPagination();
             this.clickOnPaginationButtons();
             this.loadTopNews(1);
@@ -19,22 +21,26 @@ const eventListeners = {
     },
 
     clickOnNewest(){
-        const newestButton = document.querySelector("#newest");
-        newestButton.addEventListener('click', eventListenerNewest.bind(this));
+        const newestButtons = document.querySelectorAll(".newest-news");
+        for (let newestButton of newestButtons){
+            newestButton.addEventListener('click', eventListenerNewest.bind(this));
+        }
 
-        function eventListenerNewest(e){
-            this.changeActiveNavBar(e.currentTarget);
+        function eventListenerNewest(){
+            this.changeActiveNavBar(document.querySelector("#newest-news"));
             this.createPagination();
             console.log("newest!");
         }
     },
 
     clickOnJobs(){
-        const jobsButton = document.querySelector("#jobs");
-        jobsButton.addEventListener('click', eventListenerJobs.bind(this));
+        const jobsButtons = document.querySelectorAll(".jobs");
+        for (let jobsButton of jobsButtons){
+            jobsButton.addEventListener('click', eventListenerJobs.bind(this));
+        }
 
-        function eventListenerJobs(e){
-            this.changeActiveNavBar(e.currentTarget);
+        function eventListenerJobs(){
+            this.changeActiveNavBar(document.querySelector("#jobs"));
             this.createPagination();
             console.log("jobs!");
         }
@@ -116,10 +122,10 @@ const eventListeners = {
         }
     },
 
-    changeActiveNavBar(e){
+    changeActiveNavBar(element){
         let prevActiveButton = document.querySelector(".active")
         prevActiveButton.classList.remove("active");
-        e.classList.add("active");
+        element.classList.add("active");
     },
 
     createPagination(){
