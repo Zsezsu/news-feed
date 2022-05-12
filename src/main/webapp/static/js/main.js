@@ -49,8 +49,16 @@ const eventListeners = {
         function eventListenerPageButtons(e){
             let pageNumber = parseInt(e.currentTarget.getAttribute("data-page-number"));
             let pressedPageButton = e.currentTarget;
-            let otherPageButton = (e.currentTarget.getAttribute('id') === 'next') ? document.querySelector("#prev") :
-                document.querySelector("#next");
+            let otherPageButton;
+
+            if (e.currentTarget.getAttribute('id') === 'page-number-left' || e.currentTarget.getAttribute('id') === 'page-number-middle' ||
+                e.currentTarget.getAttribute('id') === 'page-number-right'){
+
+            } else {
+                otherPageButton = (e.currentTarget.getAttribute('id') === 'next') ? document.querySelector("#prev") :
+                    document.querySelector("#next");
+            }
+
 
             if (pageNumber >= 1 && pageNumber <= 10) {
                 let pageDirection = pressedPageButton.getAttribute('id');
