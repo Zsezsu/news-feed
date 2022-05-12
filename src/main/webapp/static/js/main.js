@@ -64,14 +64,14 @@ const eventListeners = {
                 let pageDirection = pressedPageButton.getAttribute('id');
                 switch (pageDirection){
                     case 'prev':
-                        if (pageNumber !== 1) {
+                        if (pageNumber > 1) {
                             pageNumber--;
                             changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber);
                             this.loadNews(activeSite, pageNumber);
                         }
                         break;
                     case 'next':
-                        if (pageNumber !== 10) {
+                        if (pageNumber < 10) {
                             pageNumber++;
                             changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber);
                             this.loadNews(activeSite, pageNumber);
