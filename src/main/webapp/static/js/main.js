@@ -109,8 +109,8 @@ const eventListeners = {
         container.innerHTML = `
         <nav aria-label="Page navigation">
               <ul class="pagination">
-                <li class="page-item"><a class="page-link" id="prev" data-page-number="${pageNumber}" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" id="next" data-page-number="${pageNumber}" href="#">Next</a></li>
+                <li class="page-item"><a class="page-link" id="prev" data-page-number="${pageNumber}">Previous</a></li>
+                <li class="page-item"><a class="page-link" id="next" data-page-number="${pageNumber}">Next</a></li>
               </ul>
         </nav>
         `
