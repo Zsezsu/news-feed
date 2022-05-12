@@ -14,7 +14,6 @@ const eventListeners = {
             this.changeActiveNavBar(e.currentTarget);
             this.createPagination();
             this.clickOnPaginationButtons();
-            //TODO create logic to pageNumber
             this.loadTopNews(1);
         }
     },
@@ -48,29 +47,35 @@ const eventListeners = {
         }
 
         function eventListenerPageButtons(e){
-            debugger;
             let pageNumber = parseInt(e.currentTarget.getAttribute("data-page-number"));
-            console.log(pageNumber)
-            switch (pageNumber){
-                case 1:
-                    if (e.currentTarget.getAttribute('id') === 'next'){
-                        pageNumber++
-                        e.currentTarget.setAttribute('data-page-number', pageNumber)
-                    }
-                    break;
-                case pageNumber > 1:
-                    let pageDirection = e.currentTarget.getAttribute('id');
-                    switch (pageDirection){
-                        case 'prev':
+            let pressedPageButton = e.currentTarget;
+            let otherPageButton = (e.currentTarget.getAttribute('id') === 'next') ? document.querySelector("#prev") :
+                document.querySelector("#next");
+
+            if (pageNumber >= 1 && pageNumber <= 10) {
+                let pageDirection = pressedPageButton.getAttribute('id');
+                switch (pageDirection){
+                    case 'prev':
+                        if (pageNumber !== 1) {
                             pageNumber--;
-                            break;
-                        case 'next':
+                            changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber)
+                            this.loadTopNews(pageNumber);
+                        }
+                        break;
+                    case 'next':
+                        if (pageNumber !== 10) {
                             pageNumber++;
-                            break;
-                    }
+                            changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber)
+                            this.loadTopNews(pageNumber);
+                        }
+                        break;
+                }
             }
-            console.log(pageNumber)
-            this.loadTopNews(pageNumber);
+        }
+
+        function changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber){
+            pressedPageButton.setAttribute('data-page-number', pageNumber);
+            otherPageButton.setAttribute('data-page-number', pageNumber);
         }
     },
 
@@ -101,7 +106,7 @@ const eventListeners = {
         function createCards(news){
             return `
             <div class="card col">
-                <h6 class="card-header primary"><a href="${news['url']}">${news['title']}</a></h6>
+                <h6 class="card-header primary"><a href="${news['url']}" target="_blank">${news['title']}</a></h6>
                 <div class="card-body">
                     <p class="card-text">${news['user']}</p>
                     <p class="card-text">${news['time_ago']}</p>
