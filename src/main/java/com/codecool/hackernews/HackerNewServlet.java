@@ -38,8 +38,8 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
                         "</div>" +
                         "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container pagination-container hidden\">" +
                         "</div>" +
-                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container\">" +
-                        "<div class=\"row card-container\">" +
+                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container card-container\">" +
+                        "<div class=\"row card-row-container\">" +
                         "   <div class=\"card col link\">\n" +
                         "       <div class=\"card-body\">\n" +
                         "           <a>Top news</a>\n" +

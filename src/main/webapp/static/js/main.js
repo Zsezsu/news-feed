@@ -1,7 +1,6 @@
 const eventListeners = {
 
     start(){
-        this.createPagination(1);
         this.clickOnTopNews();
         this.clickOnNewest();
         this.clickOnJobs();
@@ -13,7 +12,9 @@ const eventListeners = {
 
         function eventListenerTopNews(e){
             this.changeActiveNavBar(e.currentTarget);
+            this.createPagination();
             this.clickOnPaginationButtons();
+            //TODO create logic to pageNumber
             this.loadTopNews(1);
         }
     },
@@ -24,6 +25,7 @@ const eventListeners = {
 
         function eventListenerNewest(e){
             this.changeActiveNavBar(e.currentTarget);
+            this.createPagination();
             console.log("newest!");
         }
     },
@@ -34,6 +36,7 @@ const eventListeners = {
 
         function eventListenerJobs(e){
             this.changeActiveNavBar(e.currentTarget);
+            this.createPagination();
             console.log("jobs!");
         }
     },
@@ -84,18 +87,28 @@ const eventListeners = {
 
     renderCards(news){
         let cards = "";
-        for (let element of news){
-            cards += `
-            <div class="card">
-                <h6 class="card-header primary"><a href="${element['url']}">${element['title']}</a></h6>
+        let cardsInARow = "";
+        for (let i = 0; i < news.length; i++) {
+            cardsInARow += createCards(news[i]);
+            if ((i+1) % 3 === 0){
+                let rowContainer = `<div class="row card-container">${cardsInARow}</div>`;
+                cards += rowContainer;
+                cardsInARow = "";
+            }
+        }
+        return cards
+
+        function createCards(news){
+            return `
+            <div class="card col">
+                <h6 class="card-header primary"><a href="${news['url']}">${news['title']}</a></h6>
                 <div class="card-body">
-                    <p class="card-text">${element['user']}</p>
-                    <p class="card-text">${element['time_ago']}</p>
+                    <p class="card-text">${news['user']}</p>
+                    <p class="card-text">${news['time_ago']}</p>
                 </div>
             </div>
             `
         }
-        return cards
     },
 
     changeActiveNavBar(e){
@@ -104,13 +117,14 @@ const eventListeners = {
         e.classList.add("active");
     },
 
-    createPagination(pageNumber){
+    createPagination(){
         let container = document.querySelector(".pagination-container");
+        container.classList.remove("hidden");
         container.innerHTML = `
         <nav aria-label="Page navigation">
               <ul class="pagination">
-                <li class="page-item"><a class="page-link" id="prev" data-page-number="${pageNumber}">Previous</a></li>
-                <li class="page-item"><a class="page-link" id="next" data-page-number="${pageNumber}">Next</a></li>
+                <li class="page-item"><a class="page-link" id="prev" data-page-number="1">Previous</a></li>
+                <li class="page-item"><a class="page-link" id="next" data-page-number="1">Next</a></li>
               </ul>
         </nav>
         `
