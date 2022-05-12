@@ -104,8 +104,7 @@ const eventListeners = {
         for (let i = 0; i < news.length; i++) {
             cardsInARow += createCards(news[i]);
             if ((i+1) % 3 === 0){
-                let rowContainer = `<div class="row card-container">${cardsInARow}</div>`;
-                cards += rowContainer;
+                cards += `<div class="row card-row-container">${cardsInARow}</div>`;
                 cardsInARow = "";
             }
         }
