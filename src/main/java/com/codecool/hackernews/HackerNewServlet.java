@@ -36,7 +36,7 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
                         "   <li class=\"nav-item\"><a class=\"nav-link\" id=\"jobs\">Jobs</a> " +
                         "  </ul>\n" +
                         "</div>" +
-                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container pagination-container\">" +
+                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container pagination-container hidden\">" +
                         "</div>" +
                         "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container\">" +
                         "<div class=\"row card-container\">" +

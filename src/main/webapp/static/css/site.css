@@ -31,3 +31,7 @@ a:hover {
 .link:hover {
     cursor: pointer;
 }
+.hidden {
+    visibility: hidden;
+    display: none;
+}
