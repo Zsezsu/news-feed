@@ -86,6 +86,15 @@ const eventListeners = {
         function changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber){
             pressedPageButton.setAttribute('data-page-number', pageNumber);
             otherPageButton.setAttribute('data-page-number', pageNumber);
+            changePageNumberButtonsValue(pageNumber, "page-number-left");
+            changePageNumberButtonsValue(++pageNumber, "page-number-middle");
+            changePageNumberButtonsValue(++pageNumber, "page-number-right");
+        }
+
+        function changePageNumberButtonsValue(pageNumber, id){
+            let secondPageNumber = document.querySelector(`#${id}`);
+            secondPageNumber.setAttribute('data-value', pageNumber);
+            secondPageNumber.innerHTML = pageNumber;
         }
     },
 
@@ -151,6 +160,9 @@ const eventListeners = {
         <nav aria-label="Page navigation">
               <ul class="pagination">
                 <li class="page-item"><a class="page-link" id="prev" data-page-number="1">Previous</a></li>
+                <li class="page-item"><a class="page-link" id="page-number-left" data-value="1">1</a></li>
+                <li class="page-item"><a class="page-link" id="page-number-middle" data-value="2">2</a></li>
+                <li class="page-item"><a class="page-link" id="page-number-right" data-value="3">3</a></li>
                 <li class="page-item"><a class="page-link" id="next" data-page-number="1">Next</a></li>
               </ul>
         </nav>
