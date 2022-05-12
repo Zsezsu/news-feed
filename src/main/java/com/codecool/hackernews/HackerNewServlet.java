@@ -16,37 +16,55 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String title = "Hacker news site main page";
+        String title = "Hacker news";
 
         out.println(
                 "<html>\n" +
                         "<head>" +
                         "  <title>" + title + "</title>" +
                         "  <link rel=\"stylesheet\" type=\"text/css\" href='/static/css/site.css' />" +
-                        "    <script src='/static/js/main.js' defer></script>" +
+                        "  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">\n" +
+                        "  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\" crossorigin=\"anonymous\" defer></script>\n" +
+                        "  <script src='/static/js/main.js' defer></script>" +
                         "</head>\n" +
                         "<body>\n" +
-                        "<h1 align = \"center\">" + title + "</h1>\n" +
-                        "<ul>\n" +
-                        "<li><b>First Name</b>: " + request.getParameter("first_name") + "\n" +
-                        "<li><b>Last Name</b>: " + request.getParameter("last_name") + "\n" +
-                        "</ul>\n" +
-                        "<div>Menu:" +
-                        "<ul>\n" +
-                        "   <li><a href=\"/\">Hackson news</a>: " +
-                        "   <li><button id=\"top-news\">Top news</button> " +
-                        "   <li><button id=\"newest\">Newest</button> " +
-                        "   <li><button id=\"jobs\">Jobs</button> " +
+                        "<div class=\"shadow p-3 mb-5 bg-body rounded\">" +
+                        "<ul class=\"nav nav-tabs\">\n" +
+                        "   <li class=\"nav-item\"><a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Hackson news</a> " +
+                        "   <li class=\"nav-item\"><a class=\"nav-link\" id=\"top-news\" href=\"javascript:void(0);\">Top news</a> " +
+                        "   <li class=\"nav-item\"><a class=\"nav-link\" id=\"newest\" href=\"javascript:void(0);\">Newest</a> " +
+                        "   <li class=\"nav-item\"><a class=\"nav-link\" id=\"jobs\">Jobs</a> " +
                         "  </ul>\n" +
                         "</div>" +
-                        "<div class='visit'>You can serve any static content from <span class='folder'>webapp/static</span> folder, like a css file.</div>" +
-                        "<div>Visit another servlet: <a href=\"/another\">Visit the other servlet</a></div>" +
-                        "<div>You can provide a json file as well: <a href=\"/json\">Visit Hacker News json data example</a></div>" +
-                        "<footer>" +
-                        "   <p>Developer: Zsu Juhász</p>" +
-                        "   <p>Contact me: <a href=\"mailto:zsezsu6@gmail.com\">zsezsu6@gmail.com</a></p>" +
+                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container pagination-container hidden\">" +
+                        "</div>" +
+                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container card-container\">" +
+                        "<div class=\"row card-row-container\">" +
+                        "   <div class=\"card col link\">\n" +
+                        "       <div class=\"card-body\">\n" +
+                        "           <a>Top news</a>\n" +
+                        "       </div>\n" +
+                        "    </div>" +
+                        "   <div class=\"card col link\">\n" +
+                        "       <div class=\"card-body\">\n" +
+                        "           <a>Newest news</a>\n" +
+                        "       </div>\n" +
+                        "    </div>" +
+                        "   <div class=\"card col link\">\n" +
+                        "       <div class=\"card-body\">\n" +
+                        "           <a>Jobs</a>\n" +
+                        "       </div>\n" +
+                        "    </div>" +
+                        "</div>" +
+                        "</div>" +
+                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded\">" +
+                        "<footer class=\"text-primary w-25 p-6\">" +
+                        "   <p class=\"text-primary\">Developer: Zsu Juhász</p><br>" +
+                        "   <p class=\"text-primary\">Contact me: <a class=\"text-primary\" href=\"mailto:zsezsu6@gmail.com\">zsezsu6@gmail.com</a></p>" +
                         "</footer>" +
-                        "</body></html>"
+                        "</div>" +
+                        "</body>" +
+                        "</html>"
         );
     }
 }
