@@ -38,7 +38,24 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
                         "</div>" +
                         "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container pagination-container\">" +
                         "</div>" +
-                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container card-container\">" +
+                        "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container\">" +
+                        "<div class=\"row card-container\">" +
+                        "   <div class=\"card col link\">\n" +
+                        "       <div class=\"card-body\">\n" +
+                        "           <a>Top news</a>\n" +
+                        "       </div>\n" +
+                        "    </div>" +
+                        "   <div class=\"card col link\">\n" +
+                        "       <div class=\"card-body\">\n" +
+                        "           <a>Newest news</a>\n" +
+                        "       </div>\n" +
+                        "    </div>" +
+                        "   <div class=\"card col link\">\n" +
+                        "       <div class=\"card-body\">\n" +
+                        "           <a>Jobs</a>\n" +
+                        "       </div>\n" +
+                        "    </div>" +
+                        "</div>" +
                         "</div>" +
                         "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded\">" +
                         "<footer class=\"text-primary w-25 p-6\">" +
@@ -46,7 +63,8 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
                         "   <p class=\"text-primary\">Contact me: <a class=\"text-primary\" href=\"mailto:zsezsu6@gmail.com\">zsezsu6@gmail.com</a></p>" +
                         "</footer>" +
                         "</div>" +
-                        "</body></html>"
+                        "</body>" +
+                        "</html>"
         );
     }
 }
