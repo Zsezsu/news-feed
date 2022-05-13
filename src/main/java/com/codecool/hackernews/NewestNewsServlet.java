@@ -1,5 +1,8 @@
 package com.codecool.hackernews;
 
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,17 +13,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.Type;
-
-import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet (name = "TopNews", urlPatterns = {"/api/top"}, loadOnStartup = 1)
-public class TopNewsServlet extends HttpServlet {
+@WebServlet (name= "NewestNews", urlPatterns = {"/api/newest"}, loadOnStartup = 1)
+public class NewestNewsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,7 +29,7 @@ public class TopNewsServlet extends HttpServlet {
 
         PrintWriter out = resp.getWriter();
 
-        URL url = new URL("https://api.hnpwa.com/v0/news/" + param + ".json");
+        URL url = new URL("https://api.hnpwa.com/v0/newest/" + param +".json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
@@ -43,30 +42,31 @@ public class TopNewsServlet extends HttpServlet {
         in.close();
         con.disconnect();
 
-        Type topNewsType = new TypeToken<ArrayList<TopNews>>(){}.getType();
-        List<TopNews> topNewsList = new Gson().fromJson(String.valueOf(content), topNewsType);
+        Type newestNewsType = new TypeToken<ArrayList<NewestNews>>(){}.getType();
+        List<NewestNews> newestNewsList = new Gson().fromJson(String.valueOf(content), newestNewsType);
 
-        JsonSerializer<TopNews> serializer = new JsonSerializer<TopNews>() {
+        JsonSerializer<NewestNews> serializer = new JsonSerializer<NewestNews>() {
 
             @Override
-            public JsonElement serialize(TopNews topNews, Type type, JsonSerializationContext jsonSerializationContext) {
-                JsonObject jsonTopNews = new JsonObject();
+            public JsonElement serialize(NewestNews newestNews, Type type, JsonSerializationContext jsonSerializationContext) {
+                JsonObject jsonNewestNews = new JsonObject();
 
-                jsonTopNews.addProperty("title", topNews.getTitle());
-                jsonTopNews.addProperty("time_ago", topNews.getTimeAgo());
-                jsonTopNews.addProperty("user", topNews.getUser());
-                jsonTopNews.addProperty("url", topNews.getUrl());
+                jsonNewestNews.addProperty("title", newestNews.getTitle());
+                jsonNewestNews.addProperty("time_ago", newestNews.getTimeAgo());
+                jsonNewestNews.addProperty("user", newestNews.getUser());
+                jsonNewestNews.addProperty("url", newestNews.getUrl());
 
-                return jsonTopNews;
+                return jsonNewestNews;
             }
         };
 
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(TopNews.class, serializer);
+        gsonBuilder.registerTypeAdapter(NewestNews.class, serializer);
 
         Gson customGson = gsonBuilder.create();
-        String customJson = customGson.toJson(topNewsList);
+        String customJson = customGson.toJson(newestNewsList);
 
         out.println(customJson);
+
     }
 }

@@ -30,10 +30,10 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
                         "<body>\n" +
                         "<div class=\"shadow p-3 mb-5 bg-body rounded\">" +
                         "<ul class=\"nav nav-tabs\">\n" +
-                        "   <li class=\"nav-item\"><a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Hackson news</a> " +
-                        "   <li class=\"nav-item\"><a class=\"nav-link top-news\" id=\"top-news\" href=\"javascript:void(0);\">Top news</a> " +
-                        "   <li class=\"nav-item\"><a class=\"nav-link newest-news\" id=\"newest-news\" href=\"javascript:void(0);\">Newest</a> " +
-                        "   <li class=\"nav-item\"><a class=\"nav-link jobs\" id=\"jobs\">Jobs</a> " +
+                        "   <li class=\"nav-item\"><a class=\"nav-link active active-site\" aria-current=\"page\" href=\"/\">Hackson news</a> " +
+                        "   <li class=\"nav-item\"><a class=\"nav-link top-news\" data-name=\"top\" id=\"top-news\" href=\"javascript:void(0);\">Top news</a> " +
+                        "   <li class=\"nav-item\"><a class=\"nav-link newest-news\" data-name=\"newest\" id=\"newest-news\" href=\"javascript:void(0);\">Newest</a> " +
+                        "   <li class=\"nav-item\"><a class=\"nav-link jobs\" data-name=\"jobs\" id=\"jobs\">Jobs</a> " +
                         "  </ul>\n" +
                         "</div>" +
                         "<div class=\"shadow p-3 mb-5 bg-light text-dark rounded container pagination-container hidden\">" +
