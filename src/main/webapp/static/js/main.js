@@ -96,7 +96,6 @@ const eventListeners = {
 
     async loadNews(site, pageNumber){
         const data = await this.fetchNews(site, pageNumber);
-        console.log(data);
         let container = document.querySelector(".card-container");
         container.innerHTML = this.renderCards(data, site);
     },
