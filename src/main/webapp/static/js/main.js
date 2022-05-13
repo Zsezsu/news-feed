@@ -16,7 +16,7 @@ const eventListeners = {
             this.changeActiveNavBar(document.querySelector("#top-news"));
             this.createPagination();
             this.clickOnPaginationButtons();
-            this.loadNews("top", 1);
+            this.loadNews("top", 1).catch((e) => console.log(e));
         }
     },
 
@@ -30,7 +30,7 @@ const eventListeners = {
             this.changeActiveNavBar(document.querySelector("#newest-news"));
             this.createPagination();
             this.clickOnPaginationButtons();
-            this.loadNews("newest", 1);
+            this.loadNews("newest", 1).catch((e) => console.log(e));
         }
     },
 
@@ -67,14 +67,14 @@ const eventListeners = {
                         if (pageNumber > 1) {
                             pageNumber--;
                             changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber);
-                            this.loadNews(activeSite, pageNumber);
+                            this.loadNews(activeSite, pageNumber).catch((e) => console.log(e));
                         }
                         break;
                     case 'next':
                         if (pageNumber < 10) {
                             pageNumber++;
                             changePageButtonsValue(pressedPageButton, otherPageButton, pageNumber);
-                            this.loadNews(activeSite, pageNumber);
+                            this.loadNews(activeSite, pageNumber).catch((e) => console.log(e));
                         }
                         break;
                 }
