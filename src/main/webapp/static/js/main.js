@@ -43,6 +43,8 @@ const eventListeners = {
         function eventListenerJobs(){
             this.changeActiveNavBar(document.querySelector("#jobs"));
             this.createPagination();
+            this.clickOnPaginationButtons();
+            this.loadNews("jobs", 1).catch((e) => console.log(e));
             console.log("jobs!");
         }
     },
