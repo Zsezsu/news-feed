@@ -96,15 +96,16 @@ const eventListeners = {
 
     async loadNews(site, pageNumber){
         const data = await this.fetchNews(site, pageNumber);
+        console.log(data);
         let container = document.querySelector(".card-container");
-        container.innerHTML = this.renderCards(data);
+        container.innerHTML = this.renderCards(data, site);
     },
 
-    renderCards(news){
+    renderCards(news, site){
         let cards = "";
         let cardsInARow = "";
         for (let i = 0; i < news.length; i++) {
-            cardsInARow += createCards(news[i]);
+            cardsInARow = (site === "jobs") ? cardsInARow + createJobCards(news[i]) : cardsInARow + createCards(news[i]);
             if ((i+1) % 3 === 0){
                 cards += `<div class="row card-row-container">${cardsInARow}</div>`;
                 cardsInARow = "";
@@ -119,6 +120,17 @@ const eventListeners = {
                 <div class="card-body">
                     <p class="card-text">${news['user']}</p>
                     <p class="card-text">${news['time_ago']}</p>
+                </div>
+            </div>
+            `
+        }
+
+        function createJobCards(jobs){
+            return `
+            <div class="card col">
+                <h6 class="card-header"><a href="${jobs['url']}" target="_blank">${jobs['title']}</a></h6>
+                <div class="card-body">
+                    <p class="card-text">${jobs['time_ago']}</p>
                 </div>
             </div>
             `
