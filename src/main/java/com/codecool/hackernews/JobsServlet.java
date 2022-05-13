@@ -1,5 +1,8 @@
 package com.codecool.hackernews;
 
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +12,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet (name = "Jobs", urlPatterns = {"/api/jobs"}, loadOnStartup = 1)
 public class JobsServlet extends HttpServlet {
@@ -36,6 +42,32 @@ public class JobsServlet extends HttpServlet {
         in.close();
         con.disconnect();
 
-        out.println(content);
+        Type jobsType = new TypeToken<ArrayList<Jobs>>(){}.getType();
+        List<Jobs> jobsList = new Gson().fromJson(String.valueOf(content), jobsType);
+
+        JsonSerializer<Jobs> serializer = new JsonSerializer<Jobs>() {
+
+            @Override
+            public JsonElement serialize(Jobs jobs, Type type, JsonSerializationContext jsonSerializationContext) {
+
+                JsonObject jsonJobs = new JsonObject();
+
+                jsonJobs.addProperty("title", jobs.getTitle());
+                jsonJobs.addProperty("time_ago", jobs.getTimeAgo());
+                jsonJobs.addProperty("user", jobs.getUser());
+                jsonJobs.addProperty("url", jobs.getUrl());
+
+                return jsonJobs;
+            }
+
+        };
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Jobs.class, serializer);
+
+        Gson customGson = gsonBuilder.create();
+        String jsonFileForWebSite = customGson.toJson(jobsList);
+
+        out.println(jsonFileForWebSite);
     }
 }
