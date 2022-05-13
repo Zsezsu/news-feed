@@ -54,7 +54,7 @@ public class TopNewsServlet extends HttpServlet {
 
                 jsonTopNews.addProperty("title", topNews.getTitle());
                 jsonTopNews.addProperty("time_ago", topNews.getTimeAgo());
-                jsonTopNews.addProperty("user", topNews.getAuthor());
+                jsonTopNews.addProperty("user", topNews.getUser());
                 jsonTopNews.addProperty("url", topNews.getUrl());
 
                 return jsonTopNews;

@@ -22,7 +22,7 @@ public abstract class News {
         return time_ago;
     }
 
-    public String getAuthor() {
+    public String getUser() {
         return user;
     }
 
